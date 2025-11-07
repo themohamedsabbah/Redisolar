@@ -6,3 +6,14 @@ Every site is equipped with a power meter that reports minute-by-minute measurem
 This project provides the backend and visualization components required to collect that data and present it in a meaningful, real-time view.
 
 <img width="1322" height="891" alt="image" src="https://github.com/user-attachments/assets/9b60ac65-c6df-4e5f-973f-2e2158b52d19" />
+
+# Meter Reading
+
+Each site is equipped with a connected power meter that reports energy metrics once every minute.
+For every one-minute interval, the meter sends a meter reading containing the following data:
+1. Watt-hours used
+2. Watt-hours generated
+3. Current temperature (°C)
+
+Every meter reading also includes the site ID and a timestamp, allowing the system to accurately track and analyze energy usage and production over time.
+<img width="1383" height="915" alt="image" src="https://github.com/user-attachments/assets/3307bf04-a2f3-4b2d-b8a6-2d7cb3d2e135" />

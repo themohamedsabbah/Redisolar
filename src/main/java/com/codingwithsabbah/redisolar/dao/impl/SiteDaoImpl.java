@@ -2,6 +2,8 @@ package com.codingwithsabbah.redisolar.dao.impl;
 
 import com.codingwithsabbah.redisolar.config.JacksonObjectToMapConverter;
 import com.codingwithsabbah.redisolar.dao.SiteDao;
+import com.codingwithsabbah.redisolar.exception.GenericError;
+import com.codingwithsabbah.redisolar.exception.NotFoundException;
 import com.codingwithsabbah.redisolar.model.Site;
 import com.codingwithsabbah.redisolar.util.RedisSchema;
 import lombok.AllArgsConstructor;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Component
@@ -34,11 +38,30 @@ public class SiteDaoImpl implements SiteDao {
 
     @Override
     public Site findById(long id) {
-        return null;
+        try (Jedis jedis = jedisPool.getResource()){
+            String key = RedisSchema.getSiteHashKey(id);
+            Map<String, String> fields = jedis.hgetAll(key);
+            if (fields == null || fields.isEmpty()) {
+                throw new NotFoundException(GenericError.NOT_FOUND);
+            }
+            return JacksonObjectToMapConverter.convert(fields, Site.class);
+        }
     }
 
     @Override
     public Set<Site> findAll() {
-        return Set.of();
+        Set<Site> sites = new HashSet<>();
+        try (Jedis jedis = jedisPool.getResource()) {
+            Set<String> keys = jedis.smembers(RedisSchema.getSiteIDsKey());
+
+            for (String key : keys) {
+                Map<String, String> fields = jedis.hgetAll(key);
+                if (fields != null && !fields.isEmpty()) {
+                    sites.add(JacksonObjectToMapConverter.convert(fields, Site.class));
+                }
+            }
+        }
+
+        return sites;
     }
 }

@@ -26,7 +26,7 @@ public class JacksonObjectToMapConverter {
     }
 
 
-    public static <T> T convert(Map<Object, Object> map, Class<T> clazz) {
+    public static <T> T convert(Map<String, String> map, Class<T> clazz) {
         return objectMapper.convertValue(map, clazz);
     }
 

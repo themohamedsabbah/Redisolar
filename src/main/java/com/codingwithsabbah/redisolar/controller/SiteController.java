@@ -6,25 +6,20 @@ import com.codingwithsabbah.redisolar.model.Site;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Set;
 
 @RestController
 @AllArgsConstructor
-public class HelloController {
+@RequestMapping("/v1/sites")
+public class SiteController {
     private final SiteDao siteDao;
 
-    @GetMapping("/test")
-    public ResponseEntity<?> hello() {
-        siteDao.save(new Site(
-                1L,
-                1.0,
-                1,
-                "A",
-                "B",
-                "C",
-                "D",
-                new Coordinate(1.0, 1.0)
-        ));
-        return null;
+    @GetMapping
+    public ResponseEntity<?> getSites() {
+        Set<Site> sites = siteDao.findAll();
+        return ResponseEntity.ok(sites);
     }
 }

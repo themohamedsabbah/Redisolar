@@ -1,7 +1,6 @@
 package com.codingwithsabbah.redisolar.controller;
 
 import com.codingwithsabbah.redisolar.dao.SiteDao;
-import com.codingwithsabbah.redisolar.model.Coordinate;
 import com.codingwithsabbah.redisolar.model.Site;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

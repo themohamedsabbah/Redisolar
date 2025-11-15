@@ -36,4 +36,8 @@ public class RedisSchema {
                 dateTime.getDayOfMonth()
         );
     }
+
+    public static String getCapacityRankingKey() {
+        return KeyHelper.getKey("sites:capacity:ranking");
+    }
 }

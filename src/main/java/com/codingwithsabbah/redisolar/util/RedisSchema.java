@@ -40,4 +40,10 @@ public class RedisSchema {
     public static String getCapacityRankingKey() {
         return KeyHelper.getKey("sites:capacity:ranking");
     }
+
+    // sites:geo
+    // Redis type: geo
+    public static String getSiteGeoKey() {
+        return KeyHelper.getKey("sites:geo");
+    }
 }

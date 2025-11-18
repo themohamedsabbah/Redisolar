@@ -9,4 +9,6 @@ public interface SiteGeoDao extends SiteDao{
 
     Set<Site> findByGeo(GeoQuery geoQuery);
 
+    Set<Site> findByGeoWithCapacity(GeoQuery geoQuery);
+
 }

@@ -44,6 +44,11 @@ public class SiteGeoDaoImpl implements SiteGeoDao {
     }
 
     @Override
+    public Set<Site> findByGeoWithCapacity(GeoQuery geoQuery) {
+        return Set.of();
+    }
+
+    @Override
     public void save(Site site) {
         try (Jedis jedis = jedisPool.getResource()){
             String key = RedisSchema.getSiteHashKey(site.getId());

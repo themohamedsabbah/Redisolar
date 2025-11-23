@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/capacity")
+@RequestMapping("/v1/capacities")
 public class CapacityController {
     private final CapacityService capacityService;
 

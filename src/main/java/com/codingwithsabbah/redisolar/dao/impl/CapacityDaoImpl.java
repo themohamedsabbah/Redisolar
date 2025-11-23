@@ -51,6 +51,6 @@ public class CapacityDaoImpl implements CapacityDao {
     private CapacityReport getCapacityReport(List<Tuple> lowCapacity, List<Tuple> highCapacity) {
         List<CapacityReport.SiteCapacityTuple> low = lowCapacity.stream().map(CapacityReport.SiteCapacityTuple::new).toList();
         List<CapacityReport.SiteCapacityTuple> high = highCapacity.stream().map(CapacityReport.SiteCapacityTuple::new).toList();
-        return  new CapacityReport(low, high);
+        return new CapacityReport(low, high);
     }
 }

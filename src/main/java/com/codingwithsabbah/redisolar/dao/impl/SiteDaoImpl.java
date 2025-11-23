@@ -6,7 +6,6 @@ import com.codingwithsabbah.redisolar.exception.GenericError;
 import com.codingwithsabbah.redisolar.exception.NotFoundException;
 import com.codingwithsabbah.redisolar.model.Site;
 import com.codingwithsabbah.redisolar.util.RedisSchema;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
@@ -17,10 +16,13 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
-@AllArgsConstructor
 @Slf4j
 public class SiteDaoImpl implements SiteDao {
     private final JedisPool jedisPool;
+
+    public SiteDaoImpl(JedisPool jedisPool) {
+        this.jedisPool = jedisPool;
+    }
 
     @Override
     public void save(Site site) {

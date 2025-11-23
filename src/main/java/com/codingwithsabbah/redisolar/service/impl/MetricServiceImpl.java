@@ -6,15 +6,17 @@ import com.codingwithsabbah.redisolar.model.MeterReader;
 import com.codingwithsabbah.redisolar.model.MetricUnit;
 import com.codingwithsabbah.redisolar.service.MetricService;
 import com.codingwithsabbah.redisolar.util.RedisSchema;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 
 @Service
-@AllArgsConstructor
 public class MetricServiceImpl implements MetricService {
     private final MetricDao metricDao;
+
+    public MetricServiceImpl(MetricDao metricDao) {
+        this.metricDao = metricDao;
+    }
 
     @Override
     public void save(MeterReader meterReader) {

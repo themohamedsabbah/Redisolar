@@ -6,7 +6,6 @@ import com.codingwithsabbah.redisolar.model.Coordinate;
 import com.codingwithsabbah.redisolar.model.GeoQuery;
 import com.codingwithsabbah.redisolar.model.Site;
 import com.codingwithsabbah.redisolar.util.RedisSchema;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
@@ -17,10 +16,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-@AllArgsConstructor
 @Slf4j
 public class SiteGeoDaoImpl implements SiteGeoDao {
     private final JedisPool jedisPool;
+
+    public SiteGeoDaoImpl(JedisPool jedisPool) {
+        this.jedisPool = jedisPool;
+    }
 
     @Override
     public Set<Site> findByGeo(GeoQuery geoQuery) {

@@ -4,14 +4,16 @@ import com.codingwithsabbah.redisolar.dao.CapacityDao;
 import com.codingwithsabbah.redisolar.model.CapacityReport;
 import com.codingwithsabbah.redisolar.model.MeterReader;
 import com.codingwithsabbah.redisolar.service.CapacityService;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 public class CapacityServiceImpl implements CapacityService {
     private final static int DEFAULT_LIMIT = 10;
     private final CapacityDao capacityDao;
+
+    public CapacityServiceImpl(CapacityDao capacityDao) {
+        this.capacityDao = capacityDao;
+    }
 
     @Override
     public void update(MeterReader meterReader) {

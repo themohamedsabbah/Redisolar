@@ -4,7 +4,6 @@ import com.codingwithsabbah.redisolar.dao.CapacityDao;
 import com.codingwithsabbah.redisolar.model.CapacityReport;
 import com.codingwithsabbah.redisolar.model.MeterReader;
 import com.codingwithsabbah.redisolar.util.RedisSchema;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
@@ -16,10 +15,13 @@ import redis.clients.jedis.resps.Tuple;
 import java.util.List;
 
 @Component
-@AllArgsConstructor
 @Slf4j
 public class CapacityDaoImpl implements CapacityDao {
     private final JedisPool jedisPool;
+
+    public CapacityDaoImpl(JedisPool jedisPool) {
+        this.jedisPool = jedisPool;
+    }
 
     @Override
     public void update(MeterReader meterReader) {
